@@ -33,6 +33,8 @@ import me.zhyd.oauth.config.AuthSource;
 import me.zhyd.oauth.enums.AuthResponseStatus;
 import me.zhyd.oauth.exception.AuthException;
 import me.zhyd.oauth.request.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.util.CollectionUtils;
 
 import java.net.InetSocketAddress;
@@ -56,6 +58,8 @@ import java.util.stream.Collectors;
 public class AuthRequestFactory {
     private final JustAuthProperties properties;
     private final AuthStateCache authStateCache;
+    @Autowired
+    private ApplicationContext applicationContext;
 
     /**
      * 返回当前Oauth列表
@@ -144,7 +148,9 @@ public class AuthRequestFactory {
 
             if (requestClass != null) {
                 // 反射获取 Request 对象，所以必须实现 2 个参数的构造方法
-                return ReflectUtil.newInstance(requestClass, (AuthConfig) extendRequestConfig, authStateCache);
+                AuthRequest authRequest = ReflectUtil.newInstance(requestClass, (AuthConfig) extendRequestConfig, authStateCache);
+                applicationContext.getAutowireCapableBeanFactory().autowireBean(authRequest);
+                return authRequest;
             }
         }
 

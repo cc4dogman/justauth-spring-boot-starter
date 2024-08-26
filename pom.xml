@@ -21,9 +21,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.xkcoding.justauth</groupId>
+  <groupId>com.flyhh.justauth</groupId>
   <artifactId>justauth-spring-boot-starter</artifactId>
-  <version>1.4.0</version>
+  <version>1.5.0</version>
 
   <name>justauth-spring-boot-starter</name>
   <url>https://github.com/xkcoding/justauth-spring-boot-starter</url>
@@ -72,8 +72,8 @@
     <!--SpringBoot版本-->
     <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
     <!--JustAuth版本-->
-    <justauth.version>1.16.1</justauth.version>
-    <hutool.version>5.6.5</hutool.version>
+    <justauth.version>1.16.6</justauth.version>
+    <hutool.version>5.8.31</hutool.version>
   </properties>
 
   <dependencies>
@@ -81,6 +81,7 @@
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-core</artifactId>
       <version>${hutool.version}</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>me.zhyd.oauth</groupId>
